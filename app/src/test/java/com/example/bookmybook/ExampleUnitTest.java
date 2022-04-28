@@ -1,4 +1,4 @@
-package com.example.bookmybool;
+package com.example.bookmybook;
 
 import org.junit.Test;
 

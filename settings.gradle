@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "BookMyBool"
+rootProject.name = "Book My Book"
 include ':app'
