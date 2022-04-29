@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookMyBook">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".logIn"
+            android:exported="false" />
+        <activity
             android:name=".addBook"
             android:exported="false" />
         <activity
