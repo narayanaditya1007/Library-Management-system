@@ -17,7 +17,6 @@ public class BookModel {
     public void setName(String name) {
         this.name = name;
     }
-
     public String getAuthor() {
         return author;
     }

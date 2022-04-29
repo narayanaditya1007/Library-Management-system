@@ -136,24 +136,28 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="Email"
+                            android:text="   Email"
                             android:textColor="@color/colorPurple"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Issued Books"
-                        android:textColor="@color/colorPurple"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                    <view class="androidx.appcompat.app.AlertController$RecycleListView"
+                    <LinearLayout
                         android:layout_width="match_parent"
+                        android:orientation="vertical"
                         android:layout_height="wrap_content">
-
-                    </view>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="Issued Books"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <RelativeLayout
