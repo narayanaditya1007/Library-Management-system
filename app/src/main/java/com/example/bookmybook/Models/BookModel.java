@@ -2,12 +2,35 @@ package com.example.bookmybook.Models;
 
 public class BookModel {
     private String name,author,Description;
-    private int BookID;
-    public BookModel(String name, String author, String description, int bookID) {
+    private int BookID,BookCnt;
+    public BookModel(String name, String author, String description, int bookID,int bookCnt) {
         this.name = name;
         this.author = author;
         Description = description;
         BookID = bookID;
+        BookCnt=bookCnt;
+    }
+
+    public BookModel() {
+    }
+
+    @Override
+    public String toString() {
+        return "BookModel{" +
+                "name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", Description='" + Description + '\'' +
+                ", BookID=" + BookID +
+                ", BookCnt=" + BookCnt +
+                '}';
+    }
+
+    public int getBookCnt() {
+        return BookCnt;
+    }
+
+    public void setBookCnt(int bookCnt) {
+        BookCnt = bookCnt;
     }
 
     public String getName() {

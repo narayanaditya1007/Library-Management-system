@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bookmybook.Models.BookModel;
+import com.example.bookmybook.Models.UserModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,12 +35,17 @@ public class addBook extends AppCompatActivity {
 
     // view for image view
     private ImageView imageView;
+    public String URI;
 
+
+    public EditText bookName,authorName,bookCnt;
     public TextView submit;
     // Uri indicates, where the image will be picked from
     private Uri filePath;
     // request code
     private final int PICK_IMAGE_REQUEST = 22;
+
+    public BookModel book;
 
     // instance for firebase storage and StorageReference
     FirebaseStorage storage;
@@ -49,18 +57,22 @@ public class addBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
 
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable
-                = new ColorDrawable(
-                Color.parseColor("#0F9D58"));
-        actionBar.setBackgroundDrawable(colorDrawable);
+//        ActionBar actionBar;
+//        actionBar = getSupportActionBar();
+//        ColorDrawable colorDrawable
+//                = new ColorDrawable(
+//                Color.parseColor("#0F9D58"));
+//        actionBar.setBackgroundDrawable(colorDrawable);
 
         // initialise views
         imageView = findViewById(R.id.SelectImage);
         submit= (TextView) findViewById(R.id.submit);
         storage = FirebaseStorage.getInstance();
+        bookName=findViewById(R.id.addBook_name);
+        authorName=findViewById(R.id.addBook_authorName);
+        bookCnt=findViewById(R.id.addBook_bookCnt);
         storageReference = storage.getReference();
+//        DatabaseHandler db=new DatabaseHandler(this);
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +90,9 @@ public class addBook extends AppCompatActivity {
             public void onClick(View v)
             {
                 String UploadedImage=uploadImage();
+
+
+
             }
         });
 
@@ -129,7 +144,14 @@ public class addBook extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Uri uri) {
                                                     res[0] =uri.toString();
-                                                    Toast.makeText(addBook.this, "Ho gya", Toast.LENGTH_SHORT).show();
+                                                    URI=res[0];
+                                                    Toast.makeText(addBook.this, "Ho gya"+res[0], Toast.LENGTH_SHORT).show();
+                                                    book=new BookModel(bookName.getText().toString(),authorName.getText().toString(),res[0],Integer.parseInt(bookCnt.getText().toString()),1);
+                                                    DatabaseHandler db=new DatabaseHandler(addBook.this);
+                                                    db.addBook(book);
+                                                    finish();
+
+
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
@@ -138,6 +160,7 @@ public class addBook extends AppCompatActivity {
                                                     Toast.makeText(addBook.this, "error", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
+
                                 }
                             })
                     .addOnFailureListener(new OnFailureListener() {
@@ -159,6 +182,7 @@ public class addBook extends AppCompatActivity {
 
         }
         String ress=res[0];
+        Toast.makeText(this, "ress:"+ress, Toast.LENGTH_SHORT).show();
         return  ress;
     }
 }

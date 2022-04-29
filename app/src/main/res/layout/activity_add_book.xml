@@ -106,6 +106,7 @@
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/addBook_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -125,6 +126,7 @@
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/addBook_authorName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -145,6 +147,7 @@
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/addBook_bookCnt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"
