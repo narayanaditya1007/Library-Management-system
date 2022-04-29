@@ -57,7 +57,7 @@ public class addBook extends AppCompatActivity {
         actionBar.setBackgroundDrawable(colorDrawable);
 
         // initialise views
-        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.SelectImage);
         submit= (TextView) findViewById(R.id.submit);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
