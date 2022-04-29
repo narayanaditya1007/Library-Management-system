@@ -4,45 +4,64 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bookmybook.Models.BookModel;
 import com.example.bookmybook.R;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
     Context context;
-    Vector<BookModel> list;
+    ArrayList<BookModel> list;
+
+    public HomeAdapter(Context context, ArrayList<BookModel> list) {
+        this.context = context;
+        this.list = list;
+    }
+
     @NonNull
     @Override
-    public HomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.activity_home,parent,false);
-        return new ViewHolder(view);
+    public HomeAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(context).inflate(R.layout.book_sample,parent,false);
+        return new viewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull HomeAdapter.viewholder holder, int position) {
+        BookModel book = list.get(position);
+        holder.book_name.setText(book.getName());
+        Glide.with(context).load(book.getImage()).into(holder.book_img);
+        holder.authorName.setText(book.getAuthor());
+        holder.available_count.setText(book.getAvailable_count());
+//        holder.book_img.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView return_btn,book_name;
-        ImageView book_img;
-        public ViewHolder(@NonNull View itemView) {
+    public class viewholder extends RecyclerView.ViewHolder {
+        TextView book_name,authorName,available_count;
+        CircleImageView book_img;
+        public viewholder(@NonNull View itemView) {
             super(itemView);
-            return_btn=itemView.findViewById(R.id.return_btn);
-            book_name=itemView.findViewById(R.id.book_name_issue);
-            book_img=itemView.findViewById(R.id.image_book_issued);
+            book_name=itemView.findViewById(R.id.book_sample_book_name);
+            authorName=itemView.findViewById(R.id.book_sample_author_name);
+            available_count=itemView.findViewById(R.id.book_sample_available_count);
+            book_img=itemView.findViewById(R.id.book_sample_book_image);
         }
     }
 }

@@ -1,43 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="150dp">
+android:layout_width="match_parent"
+android:layout_height="200dp"
+xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@drawable/bg_ui"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/image_book_issued"
+        android:layout_height="match_parent"
+        android:background="@drawable/book_border"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/book_sample_book_name"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/add_image" />
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Book Name"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="0.8"
-            android:layout_height="match_parent">
-            <TextView
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/book_sample_book_image"
+                android:layout_width="400dp"
+                android:layout_height="120dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/add_image"
+                app:civ_border_color="@color/colorPurpleT"
+                app:civ_border_width="4dp" />
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"
-                android:id="@+id/book_name_issue"
-                android:text="Book Name"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="RETURN"
-                android:id="@+id/return_btn"
-                android:layout_gravity="right"
-                android:layout_marginRight="15dp"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                android:padding="10sp"
-                android:textStyle="bold"
-                android:background="@drawable/red_button"
-                android:layout_height="wrap_content"/>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Issue On :"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/userProfileissueDate"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:text="25/05/2002"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="RETURN"
+                    android:id="@+id/return_btn"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:padding="15sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/red_button"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
