@@ -69,6 +69,7 @@
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
+            android:id="@+id/HomeRV"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 <!--   Tool Bar bana lena khud se-->
