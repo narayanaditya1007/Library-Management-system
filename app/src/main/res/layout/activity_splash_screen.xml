@@ -7,32 +7,52 @@
     android:background="@drawable/splash_ui"
     tools:context=".SplashScreen">
 
-    <TextView
+    <ImageView
         android:id="@+id/appname"
         android:layout_width="wrap_content"
+        android:src="@drawable/ic_appname"
         android:layout_height="wrap_content"
-        android:text="Book My Book"
-        android:layout_marginTop="60dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorWhite"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
         android:id="@+id/logo"
-        android:layout_marginTop="20sp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_below="@+id/appname"
-        android:src="@drawable/add_image"
-        android:layout_height="wrap_content"/>
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_finallogo" />
+
     <TextView
         android:layout_width="wrap_content"
-        android:text="Made by Group 62"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/timesnewroman"
+        android:text="My Book"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:textSize="38dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
-        android:textSize="30sp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/fontnewlogo"
+        android:text="Made by Group"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="62"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginRight="40dp"
         android:textColor="@color/colorWhite"
         android:layout_height="wrap_content"/>
 </RelativeLayout>

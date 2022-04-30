@@ -11,10 +11,10 @@
         android:theme="@style/Theme.BookMyBook">
         <activity
             android:name=".SplashScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -31,7 +31,6 @@
         <activity
             android:name=".logIn"
             android:exported="false" >
-
         </activity>
         <activity
             android:name=".addBook"
@@ -39,8 +38,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false">
-
         </activity>
     </application>
-
 </manifest>
