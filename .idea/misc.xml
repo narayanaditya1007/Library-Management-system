@@ -14,12 +14,15 @@
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/drawable/ic_launcher_background.xml" value="0.113" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/drawable/ic_search_background.xml" value="0.2425" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/drawable/ic_search_foreground.xml" value="0.2425" />
+        <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/drawable/ic_userimage.xml" value="0.1365" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/drawable/red_button.xml" value="0.2425" />
+        <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/drawable/splash_ui.xml" value="0.1365" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/layout/activity_add_book.xml" value="0.176" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/layout/activity_log_in.xml" value="0.264" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/layout/book_border.xml" value="0.25" />
         <entry key="..\:/Users/tabis/AndroidStudioProjects/Library-Management-system/app/src/main/res/layout/book_sample.xml" value="0.4" />

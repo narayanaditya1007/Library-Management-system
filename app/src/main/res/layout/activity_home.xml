@@ -6,13 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <ImageView
         android:id="@+id/bgHeader"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@drawable/header_register"
         android:elevation="5dp" />
 
+    <ImageView
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:id="@+id/user_profile_Activity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:elevation="10dp"
+        android:src="@drawable/ic_userimage" />
     <TextView
         android:id="@+id/tvSignUp"
         android:layout_width="wrap_content"
@@ -69,8 +79,16 @@
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:id="@+id/HomeRV"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-<!--   Tool Bar bana lena khud se-->
+
+    <ImageView
+        android:id="@+id/adBookActivity"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/add_image" />
 </RelativeLayout>
