@@ -4,21 +4,29 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bookmybook.Models.BookModel;
 import com.example.bookmybook.R;
 
-import java.util.Vector;
+import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapter.ViewHolder> {
 
-    Vector<BookModel> list;
+    ArrayList<BookModel> list;
     Context context;
+
+    public ProfileIssueAdapter(ArrayList<BookModel> list, Context context) {
+        this.list = list;
+        this.context = context;
+    }
+
     @NonNull
     @Override
     public ProfileIssueAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -28,7 +36,15 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ProfileIssueAdapter.ViewHolder holder, int position) {
-
+        BookModel book = list.get(position);
+        Glide.with(context).load(book.getImage()).into(holder.book_img);
+        holder.book_name.setText(book.getName());
+        holder.return_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //narayan madarchod apna kaam karo
+            }
+        });
     }
 
     @Override
@@ -36,13 +52,14 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
         return list.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView return_btn,book_name;
-        ImageView book_img;
+        TextView return_btn,book_name,issueDate;
+        CircleImageView book_img;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             return_btn=itemView.findViewById(R.id.return_btn);
-            book_name=itemView.findViewById(R.id.book_name_issue);
-            book_img=itemView.findViewById(R.id.image_book_issued);
+            book_name=itemView.findViewById(R.id.issued_book_name);
+            book_img=itemView.findViewById(R.id.issued_book_image);
+            issueDate=itemView.findViewById(R.id.userProfileissueDate);
         }
     }
 }
