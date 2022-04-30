@@ -6,7 +6,7 @@ public class BookModel {
     public BookModel(String name, String author, String description, int bookID,int bookCnt) {
         this.name = name;
         this.author = author;
-        Description = description;
+        this.image=image;
         BookID = bookID;
         BookCnt=bookCnt;
     }
@@ -46,14 +46,6 @@ public class BookModel {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
     }
 
     public int getBookID() {
