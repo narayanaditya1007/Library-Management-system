@@ -57,9 +57,11 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             return_btn=itemView.findViewById(R.id.return_btn);
+
             book_name=itemView.findViewById(R.id.issued_book_name);
             book_img=itemView.findViewById(R.id.issued_book_image);
             issueDate=itemView.findViewById(R.id.userProfileissueDate);
+
         }
     }
 }
