@@ -4,13 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.bookmybook.Models.BookModel;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, addBook.class);
+                Intent intent=new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });

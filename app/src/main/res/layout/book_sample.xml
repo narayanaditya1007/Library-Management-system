@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
+    android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -16,8 +17,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="Book Name"
+            android:fontFamily="@font/timesnewroman"
             android:textAlignment="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -43,15 +45,29 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/book_sample_author_name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Author Name"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Author :"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/addBook_authorName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="24"
+                        android:textColor="@color/colorPurple"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -72,10 +88,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="24"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/colorPurple"
                         android:textSize="17sp"
                         android:textStyle="bold" />
                 </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="RENT"
+                    android:fontFamily="@font/timesnewroman"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/red_button"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
