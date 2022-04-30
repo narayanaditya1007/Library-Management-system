@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.bookmybook.Models.BookModel;
+import com.example.bookmybook.Models.IssueModel;
 import com.example.bookmybook.Models.UserModel;
 
 import java.sql.Statement;
@@ -123,5 +124,51 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor=myDB.rawQuery("SELECT * FROM "+USERTABLE+" WHERE "+EMAIL+" =  ? AND "+PASSWORD+" = ?",new String[]{username,password});
         return cursor.getCount()>0;
     }
+
+    public ArrayList<IssueModel> getAllBooksIssued(String email){
+        ArrayList<IssueModel> IssueList = new ArrayList<IssueModel>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + ISSUETABLE+" WHERE "+ USEREMAIL +" = ?";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{email});
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                IssueModel issue = new IssueModel();
+                issue.setUserEmail(cursor.getString(0));
+                issue.setIssueDate(cursor.getString(1));
+                issue.setReturnDate(cursor.getString(2));
+                issue.setIssueID(cursor.getInt(3));
+                issue.setBookID(cursor.getInt(4));
+                // Adding contact to list
+                IssueList.add(issue);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return IssueList;
+    }
+
+    public int bookIdfromIssueId(int Issueid){
+        SQLiteDatabase db=this.getReadableDatabase();
+        String query="SELECT "+BOOKID1+" FROM "+ISSUETABLE+" WHERE "+ISSUEID+" = "+Issueid;
+        Cursor cursor=db.rawQuery(query,null);
+        return cursor.getInt(0);
+    }
+
+    public BookModel getBook(int Bookid){
+        SQLiteDatabase db=this.getReadableDatabase();
+        String query="SELECT * FROM "+BOOKSTABLE+" WHERE "+BOOKID+" = ?";
+        Cursor cursor=db.rawQuery(query,new String[]{String.valueOf(Bookid)});
+        if(cursor.moveToFirst()){
+            BookModel book=new BookModel(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4));
+            return book;
+        }
+
+       return new BookModel();
+    }
+
 
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +33,18 @@ public class HomeActivity extends AppCompatActivity {
         HomeRV.setAdapter(adaptor);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         HomeRV.setLayoutManager(layoutManager);
+        String newString;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString= null;
+            } else {
+                newString= extras.getString("UserEmail");
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("UserEmail");
+        }
+        Toast.makeText(this, ""+newString, Toast.LENGTH_SHORT).show();
 
         AddBook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +55,9 @@ public class HomeActivity extends AppCompatActivity {
         UserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this,UserProfileActivity.class));
+                Intent intent=new Intent(HomeActivity.this,UserProfileActivity.class);
+                intent.putExtra("STRING I NEED",newString);
+                startActivity(intent);
             }
         });
     }

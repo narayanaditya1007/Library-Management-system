@@ -33,6 +33,7 @@ public class logIn extends AppCompatActivity {
                 if(db.checkUsername(Username)){
                     if(db.checkUsernamePassword(Username,Password)){
                         Intent intent=new Intent(getApplicationContext(),HomeActivity.class);
+                        intent.putExtra("UserEmail",Username);
                         startActivity(intent);
                         finish();
                     }

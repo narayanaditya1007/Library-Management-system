@@ -10,7 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.bookmybook.DatabaseHandler;
 import com.example.bookmybook.Models.BookModel;
+import com.example.bookmybook.Models.IssueModel;
 import com.example.bookmybook.R;
 
 import java.util.ArrayList;
@@ -19,10 +21,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapter.ViewHolder> {
 
-    ArrayList<BookModel> list;
+    ArrayList<IssueModel> list;
     Context context;
 
-    public ProfileIssueAdapter(ArrayList<BookModel> list, Context context) {
+    public ProfileIssueAdapter(ArrayList<IssueModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -36,7 +38,10 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ProfileIssueAdapter.ViewHolder holder, int position) {
-        BookModel book = list.get(position);
+        IssueModel issue = list.get(position);
+        DatabaseHandler db=new DatabaseHandler(context.getApplicationContext());
+        int bookid=issue.getBookID();
+        BookModel book=db.getBook(bookid);
         Glide.with(context).load(book.getDescription()).into(holder.book_img);
         holder.book_name.setText(book.getName());
         holder.return_btn.setOnClickListener(new View.OnClickListener() {
