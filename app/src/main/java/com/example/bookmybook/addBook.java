@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bookmybook.Models.BookModel;
-import com.example.bookmybook.Models.UserModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -140,6 +139,7 @@ public class addBook extends AppCompatActivity {
                                                     book=new BookModel(bookName.getText().toString(),authorName.getText().toString(),res[0],Integer.parseInt(bookCnt.getText().toString()),1);
                                                     DatabaseHandler db=new DatabaseHandler(addBook.this);
                                                     db.addBook(book);
+                                                    startActivity(new Intent( addBook.this,HomeActivity.class));
                                                     finish();
 
 
