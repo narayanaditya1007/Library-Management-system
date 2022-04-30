@@ -84,6 +84,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/et_signinemail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -100,6 +101,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/et_signinUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -116,6 +118,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/et_signinPass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -132,6 +135,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/et_signinrePass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -152,6 +156,7 @@
                 android:elevation="10dp">
 
                 <TextView
+                    android:id="@+id/btn_signup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_ui"
@@ -161,6 +166,12 @@
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/tv_existingUserLogIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btn_signup"
+                    android:text="Already a user? Try LogIn"/>
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>

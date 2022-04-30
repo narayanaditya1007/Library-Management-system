@@ -37,9 +37,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
     public void onBindViewHolder(@NonNull HomeAdapter.viewholder holder, int position) {
         BookModel book = list.get(position);
         holder.book_name.setText(book.getName());
-        Glide.with(context).load(book.getImage()).into(holder.book_img);
+        Glide.with(context).load(book.getDescription()).into(holder.book_img);
         holder.authorName.setText(book.getAuthor());
-        holder.available_count.setText(book.getAvailable_count());
+        holder.available_count.setText(""+book.getBookCnt());
 //        holder.book_img.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

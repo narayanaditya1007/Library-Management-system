@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.example.bookmybook.Models.BookModel;
 import com.example.bookmybook.Models.UserModel;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,8 +69,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public List<BookModel> getAllBooks() {
-        List<BookModel> bookList = new ArrayList<BookModel>();
+    public ArrayList<BookModel> getAllBooks() {
+        ArrayList<BookModel> bookList = new ArrayList<BookModel>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + BOOKSTABLE;
 
@@ -94,5 +95,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return bookList;
     }
 
+    public boolean addUser(UserModel user){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(NAME,user.getName()); // Contact Name
+        values.put(EMAIL,user.getEmail()); // Contact Phone
+        values.put(PASSWORD,user.getPassword());
+
+
+        // Inserting Row
+        long res=db.insert(USERTABLE, null, values);
+        //2nd argument is String containing nullColumnHack
+        db.close(); // Closing database connection
+        return res!=-1;
+    }
+
+    public boolean checkUsername(String username){
+        SQLiteDatabase myDB=this.getReadableDatabase();
+        String que="SELECT * FROM "+USERTABLE+" WHERE "+EMAIL+" = ?";
+        Cursor cursor=myDB.rawQuery(que, new String[]{username});
+        return cursor.getCount()>0;
+    }
+
+    public boolean checkUsernamePassword(String username, String password){
+        SQLiteDatabase myDB=this.getReadableDatabase();
+        Cursor cursor=myDB.rawQuery("SELECT * FROM "+USERTABLE+" WHERE "+EMAIL+" =  ? AND "+PASSWORD+" = ?",new String[]{username,password});
+        return cursor.getCount()>0;
+    }
 
 }

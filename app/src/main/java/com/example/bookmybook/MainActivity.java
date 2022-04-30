@@ -28,14 +28,16 @@ public class MainActivity extends AppCompatActivity {
 //            System.out.println(Books.get(i).toString());
 //        }
 
-        Intent intent=new Intent(this,HomeActivity.class);
-        startActivity(intent);
+//        Intent intent=new Intent(this,HomeActivity.class);
+//        startActivity(intent);
+        DatabaseHandler db=new DatabaseHandler(this);
+
 
         addBook=findViewById(R.id.imageButton_addBook);
         addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, HomeActivity.class);
+                Intent intent=new Intent(MainActivity.this, addBook.class);
                 startActivity(intent);
             }
         });
