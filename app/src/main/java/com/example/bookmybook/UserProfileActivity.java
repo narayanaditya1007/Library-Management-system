@@ -21,7 +21,7 @@ public class UserProfileActivity extends AppCompatActivity {
         arrayList=new ArrayList<>();
         userRV=findViewById(R.id.UserRV);
 
-        arrayList.add(new BookModel("Computer Networks","Tabish",11,"https://firebasestorage.googleapis.com/v0/b/library-management-3c5ed.appspot.com/o/images%2Ff69a66a3-9b91-482e-8b78-431b921ec2f2?alt=media&token=ee67ae30-a20c-4d23-b36d-9cb6b3582054","11"));
+        //arrayList.add(new BookModel("Computer Networks","Tabish",11,"https://firebasestorage.googleapis.com/v0/b/library-management-3c5ed.appspot.com/o/images%2Ff69a66a3-9b91-482e-8b78-431b921ec2f2?alt=media&token=ee67ae30-a20c-4d23-b36d-9cb6b3582054","11"));
         ProfileIssueAdapter adaptor=new ProfileIssueAdapter(arrayList,this);
         userRV=findViewById(R.id.UserRV);
         userRV.setAdapter(adaptor);
