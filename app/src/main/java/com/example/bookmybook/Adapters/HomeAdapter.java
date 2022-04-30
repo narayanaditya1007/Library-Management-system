@@ -40,6 +40,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
         Glide.with(context).load(book.getDescription()).into(holder.book_img);
         holder.authorName.setText(book.getAuthor());
         holder.available_count.setText(""+book.getBookCnt());
+        holder.
 //        holder.book_img.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
