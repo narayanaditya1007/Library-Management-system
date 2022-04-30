@@ -37,7 +37,7 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
     @Override
     public void onBindViewHolder(@NonNull ProfileIssueAdapter.ViewHolder holder, int position) {
         BookModel book = list.get(position);
-        Glide.with(context).load(book.getImage()).into(holder.book_img);
+        Glide.with(context).load(book.getDescription()).into(holder.book_img);
         holder.book_name.setText(book.getName());
         holder.return_btn.setOnClickListener(new View.OnClickListener() {
             @Override
