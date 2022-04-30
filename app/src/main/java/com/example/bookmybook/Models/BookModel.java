@@ -1,30 +1,48 @@
 package com.example.bookmybook.Models;
 
 public class BookModel {
-    private String name,author,image,available_count;
-    private int BookID;
-    public BookModel(String name, String author, int bookID,String image,String available_count) {
+    private String name,author,Description;
+    private int BookID,BookCnt;
+    public BookModel(String name, String author, String description, int bookID,int bookCnt) {
         this.name = name;
         this.author = author;
-        this.image=image;
+        Description=description;
         BookID = bookID;
-        this.available_count=available_count;
+        BookCnt=bookCnt;
     }
 
-    public String getAvailable_count() {
-        return available_count;
+    public BookModel() {
     }
 
-    public String getImage() {
-        return image;
+    @Override
+    public String toString() {
+        return "BookModel{" +
+                "name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", Description='" + Description + '\'' +
+                ", BookID=" + BookID +
+                ", BookCnt=" + BookCnt +
+                '}';
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public int getBookCnt() {
+        return BookCnt;
+    }
+
+    public void setBookCnt(int bookCnt) {
+        BookCnt = bookCnt;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 
     public void setName(String name) {

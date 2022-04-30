@@ -8,11 +8,10 @@ public class UserModel {
     private String name,email,password;
     private Vector<Integer> IssueID;
     public UserModel(){}
-    public UserModel(String name, String email, String password, Vector<Integer> IssueID) {
+    public UserModel(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.IssueID = IssueID;
     }
     public int CountOfCurrentBooks(){
         return IssueID.size();
