@@ -40,6 +40,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
         Glide.with(context).load(book.getDescription()).into(holder.book_img);
         holder.authorName.setText(book.getAuthor());
         holder.available_count.setText(""+book.getBookCnt());
+        holder.rent_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // yaha karo
+            }
+        });
 //        holder.book_img.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -54,7 +60,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-        TextView book_name,authorName,available_count;
+        TextView book_name,authorName,available_count,rent_btn;
         CircleImageView book_img;
         public viewholder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +68,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
             authorName=itemView.findViewById(R.id.book_sample_author_name);
             available_count=itemView.findViewById(R.id.book_sample_available_count);
             book_img=itemView.findViewById(R.id.book_sample_book_image);
+            rent_btn=itemView.findViewById(R.id.book_smaple_rent_btn);
         }
     }
 }
