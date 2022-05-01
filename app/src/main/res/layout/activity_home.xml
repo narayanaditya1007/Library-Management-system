@@ -65,17 +65,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp">
             <EditText
                 android:layout_weight="3"
+                android:background="@drawable/book_border"
                 android:layout_width="match_parent"
                 android:hint="Search Your Book"
+                android:layout_gravity="bottom"
                 android:layout_height="wrap_content"/>
             <ImageView
                 android:layout_weight="1"
+                android:background="@drawable/bg_ui"
+                android:layout_gravity="bottom"
                 android:src="@drawable/ic_search_foreground"
-                android:layout_width="60dp"
-                android:layout_height="40dp"/>
+                android:layout_width="65dp"
+                android:layout_height="50dp"/>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
