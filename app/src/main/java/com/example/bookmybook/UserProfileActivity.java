@@ -38,6 +38,10 @@ public class UserProfileActivity extends AppCompatActivity {
         arrayList=db.getAllBooksIssued(newString);
 //        IssueModel i=new IssueModel("narayanaditya1007@gmail.com","10/07/2002","23/06/2003",5,3);
 //        arrayList.add(i);
+        System.out.println("Issues");
+        for(int i=0;i<arrayList.size();i++){
+            System.out.println(arrayList.get(i).toString());
+        }
         userRV=findViewById(R.id.UserRV);
 
 //        arrayList.add(new BookModel("Computer Networks","Tabish",11,"https://firebasestorage.googleapis.com/v0/b/library-management-3c5ed.appspot.com/o/images%2Ff69a66a3-9b91-482e-8b78-431b921ec2f2?alt=media&token=ee67ae30-a20c-4d23-b36d-9cb6b3582054","11"));

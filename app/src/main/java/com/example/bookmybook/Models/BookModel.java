@@ -3,11 +3,19 @@ package com.example.bookmybook.Models;
 public class BookModel {
     private String name,author,Description;
     private int BookID,BookCnt;
-    public BookModel(String name, String author, String description, int bookID,int bookCnt) {
+
+    public BookModel(String name, String author, String description, int bookID, int bookCnt) {
+        this.name = name;
+        this.author = author;
+        Description = description;
+        BookID = bookID;
+        BookCnt = bookCnt;
+    }
+
+    public BookModel(String name, String author, String description, int bookCnt) {
         this.name = name;
         this.author = author;
         Description=description;
-        BookID = bookID;
         BookCnt=bookCnt;
     }
 

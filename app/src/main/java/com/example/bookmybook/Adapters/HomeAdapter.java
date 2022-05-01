@@ -11,20 +11,27 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.bookmybook.DatabaseHandler;
+import com.example.bookmybook.HomeActivity;
 import com.example.bookmybook.Models.BookModel;
+import com.example.bookmybook.Models.IssueModel;
 import com.example.bookmybook.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
     Context context;
     ArrayList<BookModel> list;
+    String userEmail;
 
-    public HomeAdapter(Context context, ArrayList<BookModel> list) {
+    public HomeAdapter(Context context, ArrayList<BookModel> list,String userEmail) {
         this.context = context;
         this.list = list;
+        this.userEmail=userEmail;
     }
 
     @NonNull
@@ -37,14 +44,31 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
     @Override
     public void onBindViewHolder(@NonNull HomeAdapter.viewholder holder, int position) {
         BookModel book = list.get(position);
+        System.out.println("book dekhte hai"+book.getBookID());
         holder.book_name.setText(book.getName());
         Glide.with(context).load(book.getDescription()).into(holder.book_img);
         holder.authorName.setText(book.getAuthor());
         holder.available_count.setText(""+book.getBookCnt());
         holder.rent_btn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Successfully rented", Toast.LENGTH_SHORT).show();
+                if(book.getBookCnt()==0){
+                    Toast.makeText(context, "Book unavailable", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+                    String currentDate = sdf.format(new Date());
+                    IssueModel issue=new IssueModel(userEmail,currentDate,null,book.getBookID());
+                    DatabaseHandler db=new DatabaseHandler(context);
+                    db.addIssue(issue);
+                    db.bookCntDecrement(book.getBookID(),book.getBookCnt());
+                    BookModel b1=db.getBook(book.getBookID());
+                    System.out.println("book "+b1.toString());
+                    System.out.println("Issue ID "+issue.getIssueID());
+                    Toast.makeText(context, "Successfully rented", Toast.LENGTH_SHORT).show();
+                    holder.available_count.setText(String.valueOf(b1.getBookCnt()));
+                }
             }
         });
 //        holder.book_img.setOnClickListener(new View.OnClickListener() {

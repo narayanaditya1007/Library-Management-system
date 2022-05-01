@@ -5,6 +5,14 @@ public class IssueModel {
     private int BookID,issueID;
 
     public IssueModel() { ReturnDate=null;}
+    public IssueModel(String userEmail, String issueDate, String returnDate, int bookID) {
+        UserEmail = userEmail;
+        IssueDate = issueDate;
+        ReturnDate = returnDate;
+        BookID = bookID;
+
+    }
+
     public IssueModel(String userEmail, String issueDate, String returnDate, int bookID, int issueID) {
         UserEmail = userEmail;
         IssueDate = issueDate;

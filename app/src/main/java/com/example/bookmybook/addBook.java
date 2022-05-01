@@ -136,7 +136,7 @@ public class addBook extends AppCompatActivity {
                                                     res[0] =uri.toString();
                                                     URI=res[0];
                                                     Toast.makeText(addBook.this, "Ho gya"+res[0], Toast.LENGTH_SHORT).show();
-                                                    book=new BookModel(bookName.getText().toString(),authorName.getText().toString(),res[0],Integer.parseInt(bookCnt.getText().toString()),1);
+                                                    book=new BookModel(bookName.getText().toString(),authorName.getText().toString(),res[0],Integer.parseInt(bookCnt.getText().toString()));
                                                     DatabaseHandler db=new DatabaseHandler(addBook.this);
                                                     db.addBook(book);
                                                     startActivity(new Intent( addBook.this,HomeActivity.class));

@@ -13,7 +13,9 @@ import com.example.bookmybook.Models.IssueModel;
 import com.example.bookmybook.Models.UserModel;
 
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -41,8 +43,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createTableUser= "CREATE TABLE " + USERTABLE + " (" + NAME + " TEXT, " + EMAIL + " TEXT PRIMARY KEY, " + PASSWORD + " TEXT)";
-        String createTableBooks= "CREATE TABLE " + BOOKSTABLE + " (" + BOOKNAME + " TEXT, " + AUTHORNAME + " TEXT, " + IMAGEURL + " TEXT, " + BOOKID + " INTEGER PRIMARY KEY, " + BOOKCNT + " INTEGER)";
-        String creteTableIssue= "CREATE TABLE " + ISSUETABLE + " (" + USEREMAIL + " TEXT, " + ISSUEDATE + " TEXT, " + RETURNDATE + " TEXT, " + ISSUEID + " INTEGER PRIMARY KEY, " + BOOKID1 + " INTEGER)";
+        String createTableBooks= "CREATE TABLE " + BOOKSTABLE + " (" + BOOKNAME + " TEXT, " + AUTHORNAME + " TEXT, " + IMAGEURL + " TEXT, " + BOOKID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + BOOKCNT + " INTEGER)";
+        String creteTableIssue= "CREATE TABLE " + ISSUETABLE + " (" + USEREMAIL + " TEXT, " + ISSUEDATE + " TEXT, " + RETURNDATE + " TEXT, " + ISSUEID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + BOOKID1 + " INTEGER)";
         sqLiteDatabase.execSQL(createTableBooks);
         sqLiteDatabase.execSQL(createTableUser);
         sqLiteDatabase.execSQL(creteTableIssue);
@@ -60,7 +62,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(BOOKNAME, book.getName()); // Contact Name
         values.put(IMAGEURL,book.getDescription()); // Contact Phone
         values.put(AUTHORNAME,book.getAuthor());
-        values.put(BOOKID,book.getBookID());
         values.put(BOOKCNT,book.getBookCnt());
 
         // Inserting Row
@@ -130,7 +131,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Select All Query
         String selectQuery = "SELECT  * FROM " + ISSUETABLE+" WHERE "+ USEREMAIL +" = ?";
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, new String[]{email});
 
         // looping through all rows and adding to list
@@ -140,7 +141,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 issue.setUserEmail(cursor.getString(0));
                 issue.setIssueDate(cursor.getString(1));
                 issue.setReturnDate(cursor.getString(2));
-                issue.setIssueID(cursor.getInt(3));
                 issue.setBookID(cursor.getInt(4));
                 // Adding contact to list
                 IssueList.add(issue);
@@ -159,9 +159,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public BookModel getBook(int Bookid){
+        System.out.println(String.valueOf(Bookid));
         SQLiteDatabase db=this.getReadableDatabase();
-        String query="SELECT * FROM "+BOOKSTABLE+" WHERE "+BOOKID+" = ?";
-        Cursor cursor=db.rawQuery(query,new String[]{String.valueOf(Bookid)});
+        String query="SELECT * FROM "+BOOKSTABLE+" WHERE "+BOOKID+" = "+String.valueOf(Bookid);
+        Cursor cursor=db.rawQuery(query,null);
         if(cursor.moveToFirst()){
             BookModel book=new BookModel(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4));
             return book;
@@ -170,7 +171,47 @@ public class DatabaseHandler extends SQLiteOpenHelper {
        return new BookModel();
     }
 
-    public boolean addIssue()
+    public boolean addIssue(IssueModel issue){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(USEREMAIL,issue.getUserEmail()); // Contact Name
+        values.put(ISSUEDATE,issue.getIssueDate()); // Contact Phone
+        values.put(RETURNDATE,issue.getReturnDate());
+        values.put(BOOKID1,issue.getBookID());
 
+
+        // Inserting Row
+        long res=db.insert(ISSUETABLE, null, values);
+        //2nd argument is String containing nullColumnHack
+        db.close(); // Closing database connection
+        return res!=-1;
+    }
+
+    public void bookCntDecrement(int bookId,int bookcnt){
+        String query="UPDATE "+BOOKSTABLE+" SET "+BOOKCNT+" = "+String.valueOf(bookcnt-1)+" WHERE "+BOOKID+" = "+String.valueOf(bookId);
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.execSQL(query);
+    }
+
+    public void setReturndate(int issueId){
+        System.out.println("Issue ID" + issueId);
+        SQLiteDatabase db=this.getWritableDatabase();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = sdf.format(new Date());
+        System.out.println("Current date:"+currentDate);
+        String query="UPDATE "+ISSUETABLE+" SET "+RETURNDATE+" = "+currentDate+" WHERE "+ISSUEID+" = "+String.valueOf(issueId);
+        db.rawQuery(query,null);
+    }
+    public void bookCntIncrement(int bookId,int bookcnt){
+        String query="UPDATE "+BOOKSTABLE+" SET "+BOOKCNT+" = "+String.valueOf(bookcnt+1)+" WHERE "+BOOKID+" = "+String.valueOf(bookId);
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.execSQL(query);
+    }
+
+    public void deleteIssue(int issueId){
+        SQLiteDatabase db=this.getWritableDatabase();
+        String query="DELETE FROM "+ISSUETABLE+" WHERE "+ISSUEID+" = ?";
+        db.rawQuery(query,new String[]{String.valueOf(issueId)});
+    }
 
 }

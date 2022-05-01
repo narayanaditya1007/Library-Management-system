@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,7 +48,16 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
         holder.return_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //narayan madarchod apna kaam karo
+                DatabaseHandler db=new DatabaseHandler(context);
+
+//                db.setReturndate(issue.getIssueID());
+                db.deleteIssue(issue.getIssueID());
+                db.bookCntIncrement(bookid,book.getBookCnt());
+                Toast.makeText(context, "Book Returned", Toast.LENGTH_SHORT).show();
+                BookModel b1=db.getBook(bookid);
+                System.out.println("lawda");
+                System.out.println(b1.toString());
+//                holder.return_btn.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -62,7 +72,6 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             return_btn=itemView.findViewById(R.id.return_btn);
-
             book_name=itemView.findViewById(R.id.issued_book_name);
             book_img=itemView.findViewById(R.id.issued_book_image);
             issueDate=itemView.findViewById(R.id.userProfileissueDate);
