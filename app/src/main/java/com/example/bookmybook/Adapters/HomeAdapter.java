@@ -1,6 +1,7 @@
 package com.example.bookmybook.Adapters;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.bookmybook.DatabaseHandler;
 import com.example.bookmybook.Models.BookModel;
 import com.example.bookmybook.R;
 
@@ -43,7 +45,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
         holder.rent_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // yaha karo
+                DatabaseHandler db=new DatabaseHandler(context.getApplicationContext());
+
             }
         });
 //        holder.book_img.setOnClickListener(new View.OnClickListener() {

@@ -170,5 +170,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
        return new BookModel();
     }
 
+    public boolean addIssue()
+
 
 }
