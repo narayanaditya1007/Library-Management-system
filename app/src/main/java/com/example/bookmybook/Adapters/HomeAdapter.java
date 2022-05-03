@@ -60,7 +60,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
                     String currentDate = sdf.format(new Date());
                     IssueModel issue=new IssueModel(userEmail,currentDate,null,book.getBookID());
-                    DatabaseHandler db=new DatabaseHandler(context);
+                    DatabaseHandler db=new DatabaseHandler(context.getApplicationContext());
                     db.addIssue(issue);
                     db.bookCntDecrement(book.getBookID(),book.getBookCnt());
                     BookModel b1=db.getBook(book.getBookID());

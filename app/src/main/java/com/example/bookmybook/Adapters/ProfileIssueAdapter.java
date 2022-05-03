@@ -40,6 +40,7 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
     @Override
     public void onBindViewHolder(@NonNull ProfileIssueAdapter.ViewHolder holder, int position) {
         IssueModel issue = list.get(position);
+        System.out.println("Issue id " + issue.getIssueID());
         DatabaseHandler db=new DatabaseHandler(context.getApplicationContext());
         int bookid=issue.getBookID();
         BookModel book=db.getBook(bookid);
@@ -50,7 +51,7 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
             public void onClick(View view) {
                 DatabaseHandler db=new DatabaseHandler(context);
 
-//                db.setReturndate(issue.getIssueID());
+                db.setReturndate(issue.getIssueID());
                 db.deleteIssue(issue.getIssueID());
                 db.bookCntIncrement(bookid,book.getBookCnt());
                 Toast.makeText(context, "Book Returned", Toast.LENGTH_SHORT).show();

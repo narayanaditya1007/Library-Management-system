@@ -171,7 +171,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
        return new BookModel();
     }
 
-    public boolean addIssue(IssueModel issue){
+    public void addIssue(IssueModel issue){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(USEREMAIL,issue.getUserEmail()); // Contact Name
@@ -181,10 +181,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         // Inserting Row
-        long res=db.insert(ISSUETABLE, null, values);
+        db.insert(ISSUETABLE, null, values);
         //2nd argument is String containing nullColumnHack
         db.close(); // Closing database connection
-        return res!=-1;
+
     }
 
     public void bookCntDecrement(int bookId,int bookcnt){
@@ -200,7 +200,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String currentDate = sdf.format(new Date());
         System.out.println("Current date:"+currentDate);
         String query="UPDATE "+ISSUETABLE+" SET "+RETURNDATE+" = "+currentDate+" WHERE "+ISSUEID+" = "+String.valueOf(issueId);
-        db.rawQuery(query,null);
+        System.out.println("querry " + query);
+        //db.rawQuery(query,null);
     }
     public void bookCntIncrement(int bookId,int bookcnt){
         String query="UPDATE "+BOOKSTABLE+" SET "+BOOKCNT+" = "+String.valueOf(bookcnt+1)+" WHERE "+BOOKID+" = "+String.valueOf(bookId);
