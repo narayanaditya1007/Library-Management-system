@@ -127,7 +127,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<IssueModel> getAllBooksIssued(String email){
         ArrayList<IssueModel> IssueList = new ArrayList<IssueModel>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + ISSUETABLE+" WHERE "+ USEREMAIL +" = ?";
+        String selectQuery = "SELECT  * FROM " + ISSUETABLE+" WHERE "+ USEREMAIL +" = ? ";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, new String[]{email});
@@ -139,6 +139,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 issue.setUserEmail(cursor.getString(0));
                 issue.setIssueDate(cursor.getString(1));
                 issue.setReturnDate(cursor.getString(2));
+                issue.setIssueID(cursor.getInt(3));
                 issue.setBookID(cursor.getInt(4));
                 // Adding contact to list
                 IssueList.add(issue);
@@ -194,12 +195,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void setReturndate(int issueId){
         System.out.println("Issue ID" + issueId);
         SQLiteDatabase db=this.getWritableDatabase();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
         String currentDate = sdf.format(new Date());
         System.out.println("Current date:"+currentDate);
+//        currentDate="19";
         String query="UPDATE "+ISSUETABLE+" SET "+RETURNDATE+" = "+currentDate+" WHERE "+ISSUEID+" = "+String.valueOf(issueId);
         System.out.println("querry " + query);
-        db.rawQuery(query,null);
+        db.execSQL(query);
     }
     public void bookCntIncrement(int bookId,int bookcnt){
         String query="UPDATE "+BOOKSTABLE+" SET "+BOOKCNT+" = "+String.valueOf(bookcnt+1)+" WHERE "+BOOKID+" = "+String.valueOf(bookId);
@@ -211,6 +213,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getWritableDatabase();
         String query="DELETE FROM "+ISSUETABLE+" WHERE "+ISSUEID+" = ?";
         db.rawQuery(query,new String[]{String.valueOf(issueId)});
+    }
+
+    public String usernameFromEmail(String email){
+        SQLiteDatabase db=this.getReadableDatabase();
+        String query="SELECT * FROM "+USERTABLE+" WHERE "+EMAIL+" = "+email;
+        System.out.println("query: "+query);
+//        Cursor cursor=db.rawQuery(query,null);
+//        if(cursor.moveToFirst()){
+//            UserModel book=new UserModel(cursor.getString(0),cursor.getString(1),cursor.getString(2));
+//            return book.getName();
+//
+//        }
+        return "";
     }
 
 }

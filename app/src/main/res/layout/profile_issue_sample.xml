@@ -48,7 +48,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Issue On : "
+                        android:text="Issued On : "
                         android:textColor="@color/colorWhite"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -62,17 +62,45 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                         android:textSize="14sp"
                         android:textStyle="bold" />
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/return_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/red_button"
-                    android:padding="6sp"
-                    android:text="RETURN"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/return_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/red_button"
+                        android:padding="6sp"
+                        android:text="RETURN"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/userPrifileReturnDateText"
+                            android:layout_height="wrap_content"
+                            android:text="Returned On : "
+                            android:textColor="@color/colorWhite"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/userProfileReturnDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="25/05/2002"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.bookmybook;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,10 +15,16 @@ import java.util.ArrayList;
 public class UserProfileActivity extends AppCompatActivity {
     ArrayList<IssueModel> arrayList;
     RecyclerView userRV;
+    TextView ret,userEmail,userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        ret=findViewById(R.id.return_btn);
+        userName=findViewById(R.id.tv_profileUsername);
+        userEmail=findViewById(R.id.tv_profileEmail);
+
 
         String newString;
         if (savedInstanceState == null) {
@@ -32,6 +39,9 @@ public class UserProfileActivity extends AppCompatActivity {
         }
 
         DatabaseHandler db=new DatabaseHandler(this);
+
+        userName.setText(db.usernameFromEmail(newString));
+        userEmail.setText(newString);
         arrayList=db.getAllBooksIssued(newString);
 //        IssueModel i=new IssueModel("narayanaditya1007@gmail.com","10/07/2002","23/06/2003",5,3);
 //        arrayList.add(i);
@@ -49,5 +59,6 @@ public class UserProfileActivity extends AppCompatActivity {
         userRV.setAdapter(adaptor);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         userRV.setLayoutManager(layoutManager);
+
     }
 }

@@ -56,9 +56,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
                     Toast.makeText(context, "Book unavailable", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
                     String currentDate = sdf.format(new Date());
-                    IssueModel issue=new IssueModel(userEmail,currentDate,null,book.getBookID());
+                    IssueModel issue=new IssueModel(userEmail,currentDate,"null",book.getBookID());
                     DatabaseHandler db=new DatabaseHandler(context.getApplicationContext());
                     db.addIssue(issue);
                     db.bookCntDecrement(book.getBookID(),book.getBookCnt());
