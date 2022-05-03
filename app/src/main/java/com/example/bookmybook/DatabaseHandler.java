@@ -12,11 +12,9 @@ import com.example.bookmybook.Models.BookModel;
 import com.example.bookmybook.Models.IssueModel;
 import com.example.bookmybook.Models.UserModel;
 
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String USERTABLE = "USERTABLE";
@@ -201,7 +199,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         System.out.println("Current date:"+currentDate);
         String query="UPDATE "+ISSUETABLE+" SET "+RETURNDATE+" = "+currentDate+" WHERE "+ISSUEID+" = "+String.valueOf(issueId);
         System.out.println("querry " + query);
-        //db.rawQuery(query,null);
+        db.rawQuery(query,null);
     }
     public void bookCntIncrement(int bookId,int bookcnt){
         String query="UPDATE "+BOOKSTABLE+" SET "+BOOKCNT+" = "+String.valueOf(bookcnt+1)+" WHERE "+BOOKID+" = "+String.valueOf(bookId);
