@@ -1,16 +1,13 @@
 package com.example.bookmybook;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookmybook.Adapters.ProfileIssueAdapter;
-import com.example.bookmybook.Models.BookModel;
 import com.example.bookmybook.Models.IssueModel;
-import com.example.bookmybook.Models.UserModel;
 
 import java.util.ArrayList;
 
@@ -40,7 +37,7 @@ public class UserProfileActivity extends AppCompatActivity {
 //        arrayList.add(i);
         System.out.println("Issues");
         for(int i=0;i<arrayList.size();i++){
-            IssueModel issue = arrayList.get(i);
+            IssueModel issue = new IssueModel(arrayList.get(i).getUserEmail(),arrayList.get(i).getIssueDate(),arrayList.get(i).getReturnDate(),arrayList.get(i).getIssueID(),arrayList.get(i).getBookID());
             System.out.println("id "+ issue.getIssueID());
         }
         userRV=findViewById(R.id.UserRV);

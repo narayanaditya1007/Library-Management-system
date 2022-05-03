@@ -40,7 +40,7 @@ public class ProfileIssueAdapter extends RecyclerView.Adapter<ProfileIssueAdapte
     @Override
     public void onBindViewHolder(@NonNull ProfileIssueAdapter.ViewHolder holder, int position) {
         IssueModel issue = list.get(position);
-        System.out.println("Issue id " + issue.getIssueID());
+        //System.out.println("Issue id " + issue.getIssueID());
         DatabaseHandler db=new DatabaseHandler(context.getApplicationContext());
         int bookid=issue.getBookID();
         BookModel book=db.getBook(bookid);

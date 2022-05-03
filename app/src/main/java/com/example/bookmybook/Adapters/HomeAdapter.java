@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bookmybook.DatabaseHandler;
-import com.example.bookmybook.HomeActivity;
 import com.example.bookmybook.Models.BookModel;
 import com.example.bookmybook.Models.IssueModel;
 import com.example.bookmybook.R;
