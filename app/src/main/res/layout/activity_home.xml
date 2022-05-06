@@ -67,6 +67,7 @@
             android:orientation="horizontal"
             android:layout_height="60dp">
             <EditText
+                android:id="@+id/et_homeSearch"
                 android:layout_weight="3"
                 android:background="@drawable/book_border"
                 android:layout_width="match_parent"
@@ -74,6 +75,7 @@
                 android:layout_gravity="bottom"
                 android:layout_height="wrap_content"/>
             <ImageView
+                android:id="@+id/btn_homeSearch"
                 android:layout_weight="1"
                 android:background="@drawable/bg_ui"
                 android:layout_gravity="bottom"

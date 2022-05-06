@@ -3,6 +3,7 @@ package com.example.bookmybook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,15 +20,31 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<BookModel> list;
     RecyclerView HomeRV;
     HomeAdapter adaptor;
-    ImageView AddBook,UserProfile;
+    ImageView AddBook,UserProfile,Search;
+    EditText ser;
+    private String newString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Search = findViewById(R.id.btn_homeSearch);
+        ser=findViewById(R.id.et_homeSearch);
+
+        Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseHandler db=new DatabaseHandler(HomeActivity.this);
+                String searchKey=ser.getText().toString();
+                list=db.getAllBooksSearch(searchKey);
+                adaptor=new HomeAdapter(HomeActivity.this,list,newString);
+                HomeRV=findViewById(R.id.HomeRV);
+                HomeRV.setAdapter(adaptor);
+            }
+        });
 
 
 
-        String newString;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -60,7 +77,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this,addBook.class));
-                finish();
             }
         });
         UserProfile.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +103,10 @@ public class HomeActivity extends AppCompatActivity {
         //list.clear();
         DatabaseHandler db=new DatabaseHandler(this);
         list=db.getAllBooks();
+        adaptor=new HomeAdapter(this,list,newString);
+        HomeRV.setAdapter(adaptor);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        HomeRV.setLayoutManager(layoutManager);
         adaptor.notifyDataSetChanged();
     }
 }

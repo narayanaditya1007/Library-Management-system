@@ -91,6 +91,40 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        db.close();
+        // return contact list
+        return bookList;
+    }
+
+    public ArrayList<BookModel> getAllBooksSearch(String searchKey) {
+        ArrayList<BookModel> bookList = new ArrayList<BookModel>();
+
+        String s1="%"+searchKey+"%";
+        // Select All Query
+        System.out.println("String :"+searchKey);
+        String selectQuery = "SELECT  * FROM " + BOOKSTABLE+" WHERE "+BOOKNAME+" LIKE '%"+searchKey+"%' ";
+        System.out.println("Query: "+selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery,null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                BookModel book = new BookModel();
+                book.setName(cursor.getString(0));
+                book.setAuthor(cursor.getString(1));
+                book.setDescription(cursor.getString(2));
+                book.setBookID(cursor.getInt(3));
+                book.setBookCnt(cursor.getInt(4));
+                // Adding contact to list
+                bookList.add(book);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
         // return contact list
         return bookList;
     }
@@ -127,7 +161,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<IssueModel> getAllBooksIssued(String email){
         ArrayList<IssueModel> IssueList = new ArrayList<IssueModel>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + ISSUETABLE+" WHERE "+ USEREMAIL +" = ? ";
+        String selectQuery = "SELECT  * FROM " + ISSUETABLE+" WHERE "+ USEREMAIL +" = ? ORDER BY "+ISSUEDATE+" DESC";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, new String[]{email});
@@ -146,6 +180,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        db.close();
         // return contact list
         return IssueList;
     }
@@ -188,6 +224,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void bookCntDecrement(int bookId,int bookcnt){
         String query="UPDATE "+BOOKSTABLE+" SET "+BOOKCNT+" = "+String.valueOf(bookcnt-1)+" WHERE "+BOOKID+" = "+String.valueOf(bookId);
+        System.out.println("query:"+query);
         SQLiteDatabase db=this.getWritableDatabase();
         db.execSQL(query);
     }
@@ -216,16 +253,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public String usernameFromEmail(String email){
-        SQLiteDatabase db=this.getReadableDatabase();
-        String query="SELECT * FROM "+USERTABLE+" WHERE "+EMAIL+" = "+email;
-        System.out.println("query: "+query);
-//        Cursor cursor=db.rawQuery(query,null);
-//        if(cursor.moveToFirst()){
-//            UserModel book=new UserModel(cursor.getString(0),cursor.getString(1),cursor.getString(2));
-//            return book.getName();
-//
-//        }
-        return "";
+        SQLiteDatabase myDB=this.getReadableDatabase();
+        String que="SELECT "+NAME+" FROM "+USERTABLE+" WHERE "+EMAIL+" = ?";
+        Cursor cursor=myDB.rawQuery(que, new String[]{email});
+        if(cursor.moveToFirst()){
+            return cursor.getString(0);
+
+        }
+        return "lawda";
     }
 
 }

@@ -67,6 +67,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.viewholder> {
                     System.out.println("Issue ID "+issue.getIssueID());
                     Toast.makeText(context, "Successfully rented", Toast.LENGTH_SHORT).show();
                     holder.available_count.setText(String.valueOf(b1.getBookCnt()));
+                    //holder.rent_btn.setVisibility(View.INVISIBLE);
                 }
             }
         });
