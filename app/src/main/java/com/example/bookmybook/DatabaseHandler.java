@@ -260,7 +260,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return cursor.getString(0);
 
         }
-        return "lawda";
+        return "null";
     }
 
 }
