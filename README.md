@@ -116,13 +116,13 @@ BOOKID1 + " INTEGER)"
 
  
  Some Screenshots of Projects are -
- Splash Screen :
+ Splash Screen :  
  ![image](https://user-images.githubusercontent.com/76650437/167289537-445de85b-1b7e-48f5-a11d-c214cbce36bd.png)
  
- Login Page :
+ Login Page :  
  ![image](https://user-images.githubusercontent.com/76650437/167289584-f67be2cf-99c6-426b-8d13-33d4551454bc.png)
  
- Register Page:
+ Register Page:  
  ![image](https://user-images.githubusercontent.com/76650437/167289615-63965b6e-5620-4a8f-bee6-318faeb91248.png)
 
 
